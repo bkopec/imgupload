@@ -16,7 +16,7 @@ public class CorsConfig implements WebMvcConfigurer {
         System.out.println("hmmmmmmmm");
         System.out.println(allowedOrigins[0]);
         registry.addMapping("/api/**")
-                .allowedOrigins("https://imageupload.s2.bkopec.com/")
+                .allowedOrigins("https://imageupload.s2.bkopec.com")
                 .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                 .allowedHeaders("*")
                 .allowCredentials(true)
