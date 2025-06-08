@@ -1,0 +1,149 @@
+.container {
+    font-family: Arial, sans-serif;
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  
+  h1, h2 {
+    color: #333;
+    text-align: center;
+  }
+  
+  .upload-form {
+    padding: 20px;
+    border: 1px dashed #ccc;
+    border-radius: 5px;
+    margin-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .upload-form input[type="file"] {
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%;
+    max-width: 400px;
+    box-sizing: border-box;
+  }
+  
+  .upload-form button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .upload-form button:hover:not([disabled]) {
+    background-color: #0056b3;
+  }
+  
+  .upload-form button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+  }
+  
+  .upload-list {
+    margin-top: 30px;
+  }
+  
+  .no-uploads {
+    text-align: center;
+    color: #666;
+    font-style: italic;
+    padding: 20px;
+    border: 1px solid #eee;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+  }
+  
+  .upload-item {
+    border: 1px solid #eee;
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 10px;
+    background-color: #fdfdfd;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+  }
+  
+  .upload-item.status-uploading {
+    background-color: #e0f7fa; /* Light blue */
+    border-color: #00bcd4;
+  }
+  
+  .upload-item.status-success {
+    background-color: #e8f5e9; /* Light green */
+    border-color: #4caf50;
+  }
+  
+  .upload-item.status-failed {
+    background-color: #ffebee; /* Light red */
+    border-color: #f44336;
+  }
+  
+  .filename-section strong {
+    color: #333;
+  }
+  
+  .status-section {
+    font-weight: bold;
+    margin-top: 5px;
+    color: #555;
+  }
+  
+  .status-success .status-section {
+    color: #28a745;
+  }
+  
+  .status-failed .status-section {
+    color: #dc3545;
+  }
+  
+  .image-link {
+    margin-top: 10px;
+    word-break: break-all;
+  }
+  
+  .image-link a {
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  .image-link a:hover {
+    text-decoration: underline;
+  }
+  
+  .uploaded-thumbnail {
+    max-width: 100px;
+    max-height: 100px;
+    margin-top: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    display: block; /* Ensures it's on a new line below the URL */
+  }
+  
+  .progress-bar-container {
+    width: 100%;
+    background-color: #e0e0e0;
+    border-radius: 5px;
+    overflow: hidden;
+    height: 10px;
+    margin-top: 10px;
+  }
+  
+  .progress-bar {
+    height: 100%;
+    background-color: #007bff;
+    width: 0%;
+    transition: width 0.3s ease-in-out;
+  }

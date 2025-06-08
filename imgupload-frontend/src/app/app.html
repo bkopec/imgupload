@@ -1,0 +1,34 @@
+<div class="container">
+  <h1>{{ title }}</h1>
+
+  <div class="upload-form">
+    <h2>Upload Images</h2>
+    <input type="file" (change)="onFileSelected($event)" multiple accept="image/*">
+    <button (click)="onUpload()" [disabled]="!selectedFiles()">Upload Selected ({{ selectedFiles()?.length || 0 }})</button>
+  </div>
+
+  <div class="upload-list">
+    <h2>Upload Status</h2>
+    <p *ngIf="uploads().length === 0" class="no-uploads">No images uploaded yet.</p>
+
+    <div *ngFor="let upload of uploads()" class="upload-item" [ngClass]="'status-' + upload.status">
+      <div class="filename-section">
+        <strong>{{ upload.file.name }}</strong> ({{ (upload.file.size / 1024 / 1024).toFixed(2) }} MB)
+      </div>
+      <div class="status-section">
+        Status: {{ upload.status | titlecase }}
+        <span *ngIf="upload.status === 'uploading' && upload.progress !== undefined"> ({{ upload.progress }}%)</span>
+      </div>
+      <div class="message-section">
+        <p *ngIf="upload.message">{{ upload.message }}</p>
+        <div *ngIf="upload.response?.publicUrl" class="image-link">
+          <a [href]="upload.response?.publicUrl" target="_blank">{{ upload.response?.publicUrl }}</a>
+          <img [src]="upload.response?.publicUrl" alt="Uploaded Image" class="uploaded-thumbnail">
+        </div>
+      </div>
+      <div *ngIf="upload.status === 'uploading' && upload.progress !== undefined" class="progress-bar-container">
+        <div class="progress-bar" [style.width]="upload.progress + '%'"></div>
+      </div>
+    </div>
+  </div>
+</div>
