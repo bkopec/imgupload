@@ -19,8 +19,8 @@ public class MyCORSFilter implements Filter {
 
         HttpServletRequest request = (HttpServletRequest) req;
         HttpServletResponse response = (HttpServletResponse) res;
-
-        // Set CORS headers for all responses
+        System.out.println("CORS filter running...");
+    // Set CORS headers for all responses
         response.setHeader("Access-Control-Allow-Origin", request.getHeader("Origin")); // Echoes the origin
         response.setHeader("Access-Control-Allow-Credentials", "true");
         response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE, PUT, HEAD"); // Added PUT, HEAD for completeness
