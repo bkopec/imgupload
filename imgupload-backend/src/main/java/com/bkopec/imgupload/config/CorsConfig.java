@@ -13,13 +13,11 @@ public class CorsConfig implements WebMvcConfigurer {
 
     @Override
     public void addCorsMappings(CorsRegistry registry) {
-        System.out.println("hmmmmmmmm");
-        System.out.println(allowedOrigins[0]);
         registry.addMapping("/api/**")
-                .allowedOrigins("https://imageupload.s2.bkopec.com")
+                .allowedOrigins("*")
                 .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                 .allowedHeaders("*")
-                .allowCredentials(true)
+                .allowCredentials(false)
                 .maxAge(3600);
     }
 }
