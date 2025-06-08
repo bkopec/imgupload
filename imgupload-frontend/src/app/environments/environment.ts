@@ -1,4 +1,3 @@
 export const environment = {
-    production: false,
-    backendUrl: 'http://imghost.s2.bkopec.com'
+    backendUrl: 'https://imghost.s2.bkopec.com'
   };
