@@ -77,17 +77,17 @@
   }
   
   .upload-item.status-uploading {
-    background-color: #e0f7fa; /* Light blue */
+    background-color: #e0f7fa;
     border-color: #00bcd4;
   }
   
   .upload-item.status-success {
-    background-color: #e8f5e9; /* Light green */
+    background-color: #e8f5e9;
     border-color: #4caf50;
   }
   
   .upload-item.status-failed {
-    background-color: #ffebee; /* Light red */
+    background-color: #ffebee;
     border-color: #f44336;
   }
   
@@ -129,7 +129,7 @@
     margin-top: 10px;
     border: 1px solid #ddd;
     border-radius: 4px;
-    display: block; /* Ensures it's on a new line below the URL */
+    display: block;
   }
   
   .progress-bar-container {

@@ -37,16 +37,13 @@ export class AppComponent {
   onFileSelected(event: Event): void {
     const input = event.target as HTMLInputElement;
 
-    // Store reference to the input element immediately
     this.fileInput = input;
 
     if (!input.files || input.files.length === 0) {
       this.selectedFiles.set([]);
-      // If user cleared selection, also clear any previous temporary validation errors
       this.uploads.update(currentUploads =>
         currentUploads.filter(u => u.status === 'uploading' || u.status === 'success' || u.status === 'failed')
       );
-      // Explicitly clear the input value if nothing was selected (e.g., user opened dialog and clicked cancel)
       this.fileInput.value = '';
       return;
     }
@@ -54,7 +51,6 @@ export class AppComponent {
     const tempValidFiles: File[] = [];
     const tempInvalidUploadStatuses: UploadStatus[] = [];
 
-    // Filter out old validation errors and successful/failed uploads when new files are selected
     this.uploads.update(currentUploads =>
       currentUploads.filter(u => u.status === 'uploading' || u.status === 'success' || u.status === 'failed')
     );
@@ -64,13 +60,11 @@ export class AppComponent {
       let isValid = true;
       let errorMessage = '';
 
-      // 1. File Size Check
       if (file.size > this.MAX_FILE_SIZE_BYTES) {
         isValid = false;
         errorMessage += `File size exceeds ${this.MAX_FILE_SIZE_MB}MB. `;
       }
 
-      // 2. File Type Check (MIME Type)
       if (!this.ALLOWED_MIME_TYPES.includes(file.type)) {
         isValid = false;
         errorMessage += `Invalid file type: ${file.type}. Only images are allowed. `;
@@ -87,37 +81,27 @@ export class AppComponent {
       }
     });
 
-    this.selectedFiles.set(tempValidFiles); // Only store valid files for upload
+    this.selectedFiles.set(tempValidFiles);
     this.uploads.update(currentUploads => [...tempInvalidUploadStatuses, ...currentUploads]);
 
-    // --- NEW LOGIC: Reset the file input visually if no valid files remain ---
     if (tempValidFiles.length === 0 && input.files.length > 0) {
-        // This condition means the user selected files, but all of them were invalid.
-        // In this case, we want to clear the visual input field.
         this.fileInput.value = '';
     }
-    // --- END NEW LOGIC ---
   }
 
   onUpload(): void {
-    const filesToProcess = this.selectedFiles(); // Will now only contain valid files
+    const filesToProcess = this.selectedFiles();
 
     if (filesToProcess.length === 0) {
       alert('No valid files selected for upload. Please select files that are images and under ' + this.MAX_FILE_SIZE_MB + 'MB.');
-      // The input field should already be cleared by onFileSelected if all were invalid
-      // Or it was manually cleared by the user.
       return;
     }
 
-    // Reset the file input form field visually (if any valid files were there to upload)
-    // This part remains as it was, clearing the input after a successful submission attempt
-    // even if some files were processed.
     if (this.fileInput) {
       this.fileInput.value = '';
     }
-    this.selectedFiles.set([]); // Clear selected files from state
+    this.selectedFiles.set([]);
 
-    // Initialize upload statuses for the current valid batch of files
     const newUploadStatuses: UploadStatus[] = filesToProcess.map(file => ({
       file: file,
       status: 'pending',
